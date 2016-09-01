@@ -1,0 +1,150 @@
+{% extends 'panel/template.html' %}
+
+{% block panel %}
+{% if message %}
+
+<div class="alert alert-success">
+    {{message}}
+</div>
+
+{% endif %}
+<div class="shadow-white row" style="padding:10px 0;margin-left: 10px;" ng-controller="CategoryController">
+    <div class="col-md-6">
+
+        <table class="mytable">
+            <form ng-submit="addCat(category)">
+
+                <tr>
+                    <td>
+                        Category name
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="text_in" placeholder="Azeri" ng-model="category.name_az">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="text_in" placeholder="Rus" ng-model="category.name_ru">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="text_in" placeholder="English" ng-model="category.name_en">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <li ng-repeat="error in errorCat">{[{error}]}</li>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" class="butt" value="Add category">
+                    </td>
+                </tr>
+            </form>
+
+
+            <tr>
+                <td>
+
+                    <table class="table table-responsive">
+                        <tr>
+                            <th>Category name</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr ng-repeat="cat in cats">
+                            <td>
+                                {[{cat.name}]}
+                            </td>
+                            <td class="text-center">
+                                <span class="butt" style="cursor:pointer" ng-click="delete(cat,'cat')">Delete</span>
+                                <span class="butt lighter" ng-click="goto(cat.id)" style="cursor:pointer">Edit</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-md-6">
+        <table class="mytable">
+            <form ng-submit="addSub(subcategory)">
+                <tr>
+                    <td>
+                        Select Category
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="text_in" style="height: 40px" ng-model="subcategory.category_id">
+                            <option ng-repeat="cat in cats" value="{[{cat.id}]}">{[{cat.name}]}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Subcategory name
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="text_in" placeholder="Azeri" ng-model="subcategory.name_az">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="text_in" placeholder="Rus" ng-model="subcategory.name_ru">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" class="text_in" placeholder="English" ng-model="subcategory.name_en">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <li ng-repeat="error in errorSub">{[{error}]}</li>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="submit" class="butt" value="Add subcategory">
+                    </td>
+                </tr>
+            </form>
+
+            <tr>
+                <td>
+                    Subcategories
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="table table-responsive">
+                        <tr>
+                            <th>Subcategory name</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr ng-repeat="cat in subs">
+                            <td>
+                                {[{cat.name}]}
+                            </td>
+                            <td class="text-center">
+                                <span class="butt" style="cursor:pointer" ng-click="delete(cat,'sub')">Delete</span>
+                                <span class="butt lighter" ng-click="goto(cat.id)" style="cursor:pointer">Edit</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

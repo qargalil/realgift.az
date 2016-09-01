@@ -1,0 +1,31 @@
+{% extends 'panel/template.html' %}
+
+{% block panel %}
+    <div style="margin: 0 10px;" ng-controller="ApproveController">
+        <div class="col-md-4 col-sm-6" style="margin-bottom:10px;" ng-repeat="product in products">
+            <div style="border:1px solid #EBEBEB;">
+                <div class="text-center" style="position: relative">
+                    <div class="dimmer">
+                        <div style="display: flex; align-items: center;height: 100%;width: 100%; margin: 0 auto;">
+                            <div class="text-center" style="width: 100%;">
+                                <a href="/panel/edit/{[{product.id}]}" class="butt">Deyish</a>
+                                <a ng-click="sil(product)" class="butt lighter">Sil</a>
+                                <a ng-click="approve(product)" class="butt">Tesdiqle</a>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="/img/{[{product.image}]}" style="width: 100%">
+                </div>
+
+                <div style="background:#fff; padding:10px;border-top:1px solid #EBEBEB">
+                    <a href="\mehsul\{[{product.id}]}">{[{product.name}]}</a>
+                    <div style="border-top: 1px solid #ddd; padding-top: 5px;">
+                        Müəllif : <a ng-href="/user/{[{product.user_id}]}" target="_blank">{[{product.username}]}</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <h2 ng-hide="products.length">{{lang.noProduct}}</h2>
+    </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+        <script src="/js/endscript.js"></script>
+
+
+        
+        <div class="my-footer">
+            <div  class="partners hidden-xs">
+                <a href="http://www.qanun.az" target="_blank"><img src="/parters/qanun.png"></a>
+                <a href="https://www.facebook.com/IlFuturoBookCafe" target="_blank"><img src="/parters/cofee.png"></a>
+                <a href="https://www.facebook.com/upper.az" target="_blank"><img src="/parters/upper.png"></a>
+             </div>
+
+            <div class="container text-center" style="padding: 30px 0;">
+                <div class="foot-li">
+                    <div class="col-sm-4 col-xs-6">
+                        <h3>{{lang.alver}}</h3>
+                        <ul>
+                            {% for page in pages %}
+                                <li>
+                                    <a href="/sehife/{{page.id}}">{{page.name}}</a>
+                                </li>
+
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-xs-6">
+                        <h3>{{lang.heyyet}}</h3>
+                        <ul>
+                            {% for page in pages2 %}
+                            <li>
+                                <a href="/sehife/{{page.id}}">{{page.name}}</a>
+                            </li>
+
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <h3>{{lang.about}}</h3>
+                        <ul>
+                            {% for page in pages3 %}
+                                <li>
+                                    <a href="/sehife/{{page.id}}">{{page.name}}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+            <div style="background: #703364; line-height: 40px; color: #fff; text-align: center;">
+                RealGift.az Copyright &copy; 2016
+            </div>
+        </div>
+        <span class="scrollButton" style="padding: 0 10px 10px;; border: 1px solid #999; background-color: rgba(176,190,197,0.4); border-radius: 10px; position: fixed;right: 30px;bottom: 60px; cursor: pointer; transition: all 0.3s; visibility: hidden; opacity: 0;">
+            <i class="fa fa-angle-up fa-3x">
+
+            </i>
+        </span>

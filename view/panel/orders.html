@@ -1,0 +1,50 @@
+{% extends 'panel/template.html' %}
+
+{% block panel %}
+    <div style="margin: 0 10px;">
+        {% for orderer in orderers %}
+            <div class="shadow-white" style="margin-bottom: 20px;">
+                <div style="padding: 10px;">
+                    <div class="alert alert-info">
+                        Sifarişçi: <a href="/user/{{orderer.user_id}}">{{orderer.name}}</a> &nbsp; Mobil nömrə: {{orderer.mobile}}
+                    </div>
+
+                    <table class="table table-responsive">
+                        {% for order in orderer.orders %}
+                            <tr>
+                                <td>
+                                    Sifarişin adı : <a href="/mehsul/{{order.id}}">{{order.name}}</a>
+                                </td>
+                                <td>
+                                    Sifarişin sayı : {{order.amount}}
+                                </td>
+                                <td>
+                                    <a href="/user/{{order.owner}}">Müəllif</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="3" style="padding-top: 20px">
+                                <a class="butt lighter" onclick="orderComplete('{{orderer.pay_id}}')">Sifariş yerinə yetirildi</a>
+                                <a class="butt" onclick="orderDelete('{{orderer.pay_id}}')">Sifarişi sil</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+<script>
+    function orderComplete(id) {
+        if (confirm('Sifarişi təsdiqlə?')){
+            location.href='?tema=ok&&id='+id;
+        }
+    }
+    function orderDelete(id) {
+        if (confirm('Sifarişi silirsiniz?')){
+            location.href='?tema=delete&&id='+id;
+        }
+    }
+</script>
+
+{% endblock %}

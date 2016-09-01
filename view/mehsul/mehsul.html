@@ -1,0 +1,239 @@
+{%extends 'template.html'%}
+
+{%block main%}
+
+<div class="container" style="margin-top: 10px;" ng-controller="ItemController">
+
+        <div class="col-sm-6 row" ng-init="getImages({{product.id}})">
+            <div style="border:1px solid #EBEBEB; ">
+                <div><img src="/img/{{product.image}}" class="materialboxed" id="myImage" width="100%"  alt=""></div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-2" style="border: 1px solid #EBEBEB; margin: 5px; padding: 0" ng-repeat="image in images">
+                    <img ng-src="/img/{[{image.name}]}" ng-click="setImage(image.name)" style="width: 100%; cursor: pointer" >
+                </div>
+
+            </div>
+            <div class="hidden-xs">
+                <div style="margin-top:5px;">
+                    <div class="shadow-white" style="padding:10px; font-size: 17px;;">
+                        <h3>{{lang.description}}</h3>
+                        {{product.text}}
+                    </div>
+
+                </div>
+
+
+                <div class="shadow-white">
+                    {% if user.privilege %}
+                    <h3>{{lang.comment}}</h3>
+                    <form action method="post">
+                        <table>
+
+                            <tr>
+                                <td>
+                                    <textarea maxlength="200" class="text_in" ng-model="a" style="height: 105px; resize: none;" name="comment"></textarea>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-right" style="padding: 5px;">
+                                    {[{200-a.length}]} &nbsp;
+                                    <input type="submit" class="butt" value="{{lang.comment}}">
+                                </td>
+                            </tr>
+
+                            {% endif %}
+                            {% if comments %}
+                            <tr>
+                                <td>
+                                    <h3>{{lang.comments}}</h3>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {%for comment in comments%}
+                                    <div style="margin: 10px 2px; box-shadow: 0 0 5px #ddd; background: rgb(252,252,252); border-radius: 10px;">
+                                        <div style="padding: 5px;;border-radius: 10px; border: 1px solid #dddddd; border-top: none; margin: 0;" class="row">
+                                            <div class="nopm" style="line-height: 25px">
+                                                <span style="color: #8a3a7a">
+                                                    {{comment.user_name}}
+                                                </span> : {{comment.comment}}
+                                            </div>
+                                            <div class="nopm" style="color: #666; float: right; font-size: smaller;">
+                                                {{ comment.time|date('d-m-Y')}}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    {%endfor%}
+                                </td>
+                            </tr>
+                            {%endif%}
+                        </table>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    <div class="col-sm-6 row">
+        <form action="/order" method="POST">
+            <input type="hidden" name="product_id" value="{{product.id}}">
+            <div class="text-center shadow-white" style="padding-bottom: 30px; width: 100%">
+                <h1>{{product.name}} </h1>
+                <h2>
+                    {{lang.price}} : {{product.price}} azn
+                </h2>
+
+                <div class="quan">
+                    {{lang.shipping}}: 4 AZN
+                </div>
+
+
+                <div class="quan">
+                    {{lang.quantity}}: <span><i class="fa fa-chevron-down" ng-click="lessen()" style="cursor: pointer"></i></span> <input type="number" ng-model="amount" style="width: 40px" max="{{product.amount}}" min="1" value="1" name="amount" /> <span><i class="fa fa-chevron-up" ng-click="add({{product.amount}})" style="cursor: pointer"></i></span>
+                    <div>
+                        <span style="padding-left:15px;">{{lang.max}}: {{product.amount}}</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="border: 2px solid #8A3A7A;border-radius: 10px; box-shadow: 0 0 4px #ddd; padding: 10px 30px; display: inline-block">
+                        <h3>{{lang.overview}}</h3>
+
+                        <div class="text-left">
+                            <h4>
+                                {{lang.material}} : {{product.material}}
+                            </h4>
+
+                            <h4>
+                                {{lang.color}} : {{product.color}}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div style="margin: 50px 0;">
+                    <div style="display: inline-block; text-align: center;">
+                        <label for="sub" style="cursor: pointer">
+                            <i class="fa fa-shopping-bag" style="color: #8A3A7A; font-size: 45px;"></i>
+                            <div style="font-size: 20px;">
+                                {{lang.order}}
+                            </div>
+                        </label>
+                        <input type="submit" id="sub" style="display: none;">
+
+                    </div>
+
+                    <div style="display: inline-block; text-align: center; margin-left: 40px; cursor: pointer;" ng-click="wishlist()">
+                        <i class="fa" ng-class="[{'fa-heart-o':!inList},{'fa-heart':inList}]" style="color: #f30; font-size: 45px;"></i>
+                        <div style="font-size: 20px;">
+                            {{lang.wishlist}}
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <div class="addthis_sharing_toolbox"></div>
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+
+                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-573e2eb256f4ebf3"></script>
+
+
+                {% if user.privilege==3%}
+                <div style="padding: 10px;">
+                    <a href="/panel/edit/{{product.id}}" class="butt">Dəyiş</a>
+                </div>
+                {%endif%}
+            </div>
+        </form>
+        <div class="hidden-sm hidden-md hidden-lg">
+            <div style="margin-top:5px;">
+                <div class="shadow-white" style="padding:10px; font-size:17px;">
+                    <h3>{{lang.description}}</h3>
+                    {{product.text}}
+                </div>
+
+            </div>
+
+
+            <div class="shadow-white">
+                {% if user.privilege %}
+                <h3>{{lang.comment}}</h3>
+                <form action method="post">
+                    <table>
+
+                        <tr>
+                            <td>
+                                <textarea maxlength="200" class="text_in" ng-model="a" style="height: 105px; resize: none;" name="comment"></textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-right" style="padding: 5px;">
+                                {[{200-a.length}]} &nbsp;
+                                <input type="submit" class="butt" value="{{lang.comment}}">
+                            </td>
+                        </tr>
+
+                        {% endif %}
+                        {% if comments %}
+                        <tr>
+                            <td>
+                                <h3>{{lang.comments}}</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {%for comment in comments%}
+                                                              <div style="margin: 10px 2px; box-shadow: 0 0 5px #ddd; background: rgb(252,252,252); border-radius: 10px;">
+                                    <div style="padding: 5px;;border-radius: 10px; border: 1px solid #dddddd; border-top: none; margin: 0;" class="row">
+                                        <div class="nopm" style="line-height: 25px">
+                                                <span style="color: #8a3a7a">
+                                                    {{comment.user_name}}
+                                                </span> : {{comment.comment}}
+                                        </div>
+                                        <div class="nopm" style="color: #666; float: right; font-size: smaller;">
+                                            {{ comment.time|date('d-m-Y')}}
+                                        </div>
+
+                                    </div>
+                                </div>
+                                {%endfor%}
+                            </td>
+                        </tr>
+                        {%endif%}
+                    </table>
+                </form>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+     
+
+</div>
+
+<script>
+    $(document).ready(function(){
+        $('.materialboxed').materialbox();
+    });
+</script>
+
+
+{%endblock%}

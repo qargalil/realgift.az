@@ -1,0 +1,45 @@
+{% extends 'panel/template.html' %}
+
+{% block panel %}
+    <div class="shadow-white" style="margin: 0 10px;">
+        <table class="table table-responsive">
+            <tr>
+                <th colspan="2">
+                    İstifadəçi məlumatı
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Ad:
+                </td>
+                <td>
+                    {{user_.name}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Mobil nömrə
+                </td>
+                <td>
+                    {{user_.mobile}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email:
+                </td>
+                <td>
+                    {{user_.email}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ünvan
+                </td>
+                <td>
+                    {{user_.address}}
+                </td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'panel/template.html' %}
+
+{% block panel %}
+
+
+
+<div style="margin: 0 10px;" class="shadow-white">
+    <div style="padding: 10px;">
+        <a href="/panel/pages" class="butt">Səhifələr</a>
+        <a href="/panel/pages?page=new" class="butt">Yeni sehife</a>
+    </div>
+    {% if errors.success %}
+        <div class="alert alert-success">
+            {{ errors.success }}
+        </div>
+    {% else %}
+
+        {%for error in errors%}
+        <div class="alert alert-warning">
+            {{error}}
+        </div>
+        {%endfor%}
+    {% endif %}
+
+    {% block page %}
+
+    {% endblock %}
+
+</div>
+
+{% endblock %}

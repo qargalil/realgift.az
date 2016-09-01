@@ -1,0 +1,143 @@
+{%extends 'template.html'%}
+{%block main%}
+    <div class="container" style="margin-top:10px;" ng-controller="RegisterController"> 
+        
+        <div class="col-md-4 col-md-push-1 shadow-white">
+            <form method="post" class="nopm" ng-submit="submit()">
+               
+                <table class="mytable">
+                    <tr>
+                        <td class="text-center">
+                            <img src="/img/logo.png" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="text_in" placeholder="{{lang.email}}" ng-model='form.email'>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="text_in" placeholder="{{lang.userName}}" ng-model='form.username'>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="text_in" placeholder="{{lang.name}}" ng-model='form.name'>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="text_in" placeholder="{{lang.surname}}" ng-model="form.surname">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color: #8a3a7a;">
+                            <i class="fa fa-male"></i> {{lang.man}} <input type="radio" ng-model="form.gender" value="1">
+                            <i class="fa fa-female"></i> {{lang.woman}} <input type="radio" ng-model="form.gender"  value="2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="password" class="text_in" placeholder="{{lang.password}}" ng-model='form.password'>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="password" class="text_in" placeholder="{{lang.passwordAgain}}" ng-model='form.password2'>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="text_in" placeholder="{{lang.mobile}}" ng-model='form.mobile'>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="text_in" placeholder="{{lang.address}}" ng-model='form.address'>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul class="alert alert-warning" ng-show="error">
+                                <li ng-repeat="e in error" style="margin-bottom:16px;">
+                                    {[{e}]}
+                                </li>
+                            </ul>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" style="padding:0;">
+                            <input type="submit" class="butt" value="{{lang.register}}">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            
+        </div>
+        <div class="col-md-5 col-md-push-3 ">
+            <h4 style="font-weight: 600; color: #8a3a7a;">Əl işləri kütləvi istehsalatdan fərqli olaraq:</h4>
+
+            <ul class="regpuncts">
+                <li>
+                    <span>Personaldır. <span style="float: right; color: #555; font-size: 15px; font-weight: normal;">etrafli <i class="fa fa-arrow-right" aria-hidden="true"></i></span></span>
+                    <div>
+                        Aldığınız hədiyyənin eynisini başqasının verə bilməyəcəyini qarantiləyirsiniz. Yalnızca məhsul deyil, o sənətkardan bir parça əldə edirsiniz
+                    </div>
+                </li>
+                <li>
+                    <span>Keyfiyyətlidir.<span style="float: right; color: #555; font-size: 15px; font-weight: normal;">etrafli <i class="fa fa-arrow-right" aria-hidden="true"></i></span></span>
+                    <div>
+                        Sənətkarlar məhsulları qazanc üçün deyil, zövq üçün sevgi ilə hazırlayırlar və məhsullarını qürurla sərgiləyirlər. Mənfəət əldə etmək üçün ucuz ləvazimatlardan boyun qaçırırlar
+                    </div>
+                </li>
+                <li>
+                    <span>Münasibdir.<span style="float: right; color: #555; font-size: 15px; font-weight: normal;">etrafli <i class="fa fa-arrow-right" aria-hidden="true"></i></span></span>
+                    <div>
+                        Ticarətçilər tərəfindən əldən-ələ keçmədiyinə və gömrük xərcləri olmadığı üçün qiymət münasibdir və sadəcə sənətkar tərəfindən müəyyən olunur.
+                    </div>
+                </li>
+                <li>
+
+                    <span>Fərdidir.<span style="float: right; color: #555; font-size: 15px; font-weight: normal;">etrafli <i class="fa fa-arrow-right" aria-hidden="true"></i></span></span>
+                    <div>
+                        Kütləvi istehsalat bir məhsuldan dəfələrlə istehsal edilməsindən fərqli olaraq əl işləri özəl və təkraredilməzdir. Sənətkar təxəyyülünü və yaradıcılığını hər əsərinə görə ayrıca nümayiş etdirir.
+                    </div>
+                </li>
+                <li>
+                    <span>
+                        Müasirdir.<span style="float: right; color: #555; font-size: 15px; font-weight: normal;">etrafli <i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+                    </span>
+                    <div>
+                        Zavod və Fabriklərdə məhsul istehsal olunmazdan əvvəl uzun müddətli test edilib bütün insanların zövqünə uyğun olub olmamağı yoxlanılır. İstehsalı gec başa gəlir və müasirliyi daima izləyə bilmirlər. Əl işləri isə hər dövrə uyğun olaraq sənətkar tərəfindən qısa zamanda hazırlanır.
+                    </div>
+
+                </li>
+                <li>
+                    <span>
+                        Faydalıdır<span style="float: right; color: #555; font-size: 15px; font-weight: normal;">etrafli <i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+                    </span>
+                    <div>
+                        Zərərli maddə və kimyəvi boyalardan deyil, sadəcə təbii vəsaitlərdən hazırlanır. Sadəcə iki əl və bir-iki alət ilə hazırlanır.
+                    </div>
+
+                </li>
+            </ul>
+
+            <script>
+                $('.regpuncts div').css({display:'none'});
+                $('.regpuncts li').click(function (e) {
+                    if($(this).children('div').css('display')=='none')
+                        $(this).children('div').css({display:'block'});
+                    else
+                        $(this).children('div').css({display:'none'});
+                })
+            </script>
+
+
+
+        </div>
+    </div>
+
+{%endblock%}

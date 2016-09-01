@@ -1,0 +1,47 @@
+{%extends 'template.html'%}
+
+{%block main%}
+
+
+<div class="container" style="color:#555; margin-top: 10px;">
+
+
+<div class="row">
+    <div class="col-md-2 nopm mySideBar row" style="margin-bottom: 10px;">
+        <a href="/panel" class="col-md-12 col-sm-5 col-sm-push-1 col-md-push-0"><i class="fa fa-lg fa-home"></i> {{lang.mainPage}}</a>
+        {% if user.privilege>1 %}
+            {% if user.privilege>2 %}
+                <a href="/panel/seeorders"class="col-md-12 col-sm-5 col-sm-push-1 col-md-push-0"><i class="fa fa-lg fa-plus-circle"></i> {{lang.orders}}</a>
+                <a href="/panel/category"class="col-md-12 col-sm-5 col-sm-push-1 col-md-push-0"><i class="fa fa-lg fa-plus-circle"></i> {{lang.addCategory}}</a>
+                <a href="/panel/approve" class="col-md-12 col-sm-5 col-sm-push-1 col-md-push-0"><i class="fa fa-lg fa-check-circle"></i>
+                    Tesdigle</a>
+                <a href="/panel/users" class="col-md-12 col-sm-5 col-sm-push-1 col-md-push-0"><i class="fa fa-lg fa-users"></i> Users</a>
+                <a href="/panel/comment" class="col-md-12 col-sm-5 col-sm-push-1 col-md-push-0"><i class="fa fa-lg fa-users"></i> Şərhlər</a>
+                <a href="/panel/pages" class="col-md-12 col-sm-5 col-sm-push-1 col-md-push-0"><i class="fa fa-lg fa-file-text"></i> Səhifələr</a>
+
+        <a href="/panel/settings" class="col-md-12 col-sm-5 col-sm-push-1 col-md-push-0"><i class="fa fa-lg fa-cogs"></i> Ayarlar</a>
+            {% endif %}
+
+            <a href="/panel/yeni-mehsul" class="col-md-12 col-sm-5 col-sm-push-1 col-md-push-0"><i class="fa fa-lg fa-plus"></i> {{lang.newProduct}}</a>
+
+        {% endif %}
+        <a href="/panel/profil" class="col-md-12 col-sm-5 col-sm-push-1 col-md-push-0"><i class="fa fa-lg fa-user"></i> {{lang.profile}}</a>
+        <a href="/panel/arzu" class="col-md-12 col-sm-5 col-sm-push-1 col-md-push-0"><i class="fa fa-lg fa-heart"></i> Wish List</a>
+    </div>
+    <div class="col-md-10" style="margin: 5px 0; padding-right: 0;">
+        {% block panel%}{% endblock %}
+    </div>
+</div>
+
+</div>
+
+{% if user.privilege>1 %}
+    <ul style="position: absolute; right: 10px; top: 300px;" class="text-center">
+        <li><a href="/sehife/9" style="color: #8a3a7a"><i class="fa fa-camera-retro fa-4x"></i><br>Foto Telim</a></li>
+        <li style="margin-top: 10px;"><a href="/sehife/8" style="color: #ed4646"><i class="fa fa-line-chart fa-4x" aria-hidden="true"></i><br>Satış artırmaq</a></li>
+    </ul>
+
+
+{% endif %}
+
+{%endblock%}

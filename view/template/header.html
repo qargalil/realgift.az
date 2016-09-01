@@ -1,0 +1,152 @@
+<div class="hidden-xs languages" style="color: #ed4646"  >
+            
+            <div class="container">
+                <div>
+                    <div class="col-xs-6 nopm">
+                        <ul class="social">
+                            <li><a href="https://www.facebook.com/Realgift.az" style="padding:5px 9px;"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/realgiftaz" style="padding:5px 6px;"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.instagram.com/real.gift/" style="padding:5px 7px;"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+
+                    </div>
+
+                    <div class="col-xs-6 nopm" style="color: #fff;">
+                        <div class="text-right">
+                            <a href="/dil/az"><img class="flag flag-az" /></a>
+                            <a href="/dil/ru"><img class="flag flag-ru" /></a>
+                            <a href="/dil/en"><img class="flag flag-gb" /></a>
+                            <i class="fa fa-phone"></i> 070 255 48 75
+                        </div>
+
+                    </div>
+                </div>
+                 
+            </div>
+        </div>
+        
+        
+        
+        <div class="logoCont">
+            <div class="hidden-sm hidden-md hidden-lg text-center asss" >
+                
+                <!-- sidebar burada !-->
+                <div class="ui left vertical sidebar asss barr">
+                    <ul class="social text-center asss" style="padding:20px; border-bottom:1px solid #8A3A7A;">
+                        <li><a href="https://www.facebook.com/Realgift.az" style="padding:5px 9px;"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/realgiftaz" style="padding:5px 6px;"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://www.instagram.com/real.gift" style="padding:5px 7px;"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                    
+                    <ul class="social text-center asss" style="border-bottom:1px solid #8A3A7A;">
+                        <li><a href="/dil/az" style="padding:3px 5px 6px;"><img class="flag flag-az" /></a></li>
+                        <li><a href="/dil/ru" style="padding:3px 5px 6px;"><img class="flag flag-ru" /></a></li>
+                        <li><a href="/dil/en" style="padding:3px 5px 6px;"><img class="flag flag-gb" /></a></li>
+                    </ul>
+                    
+                    <div class="barcat">
+                        {%for category in categories %}
+                            <div class="barcat-container">
+                                <a style="cursor:pointer;">{{category.name}}</a>
+                                {% if category.subs %}
+                                <ul class="batcats">
+                                    {% for sub in category.subs %}
+                                    <li><a href='/category/{{sub.id}}'>{{sub.name}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </div>
+
+                        {%endfor%}
+                    </div>
+                    
+                    <ul>
+                        <i class="fa fa-phone"></i> 070 255 48 75
+                    </ul>
+                    
+                </div>
+                
+                <!-- sidebar burada bitdi !-->
+                
+                <div class="asss" style="text-align:left;color:#8A3A7A;">
+                    <i class="fa fa-bars fa-2x my-bar" aria-hidden="true"></i>
+                    <a href="/"><img src="/img/logo.png" alt=""></a>
+                </div>
+                <div class="asss" style="padding: 5px; 10px;">
+                    <form action="/axtar" method="get">
+                        <input type="text" class="search_in text_in" name="search" placeholder="{{lang.search}}" /><button type="submit" class="search_but"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+                <div class="asss" style="padding-right:10px;line-height:45px;">
+
+
+                    {% if user %}
+                    <a href="/panel" class="butt lighter">Panel</a>
+                    <a href="/cix" class="butt">{{lang.signOut}}</a>
+                    {% else %}
+                    <a href="/qeydiyyat" class="butt lighter">{{lang.register}}</a>
+                    <a href="/daxilol" class="butt">{{lang.enter}}</a>
+                    {%endif%}
+       
+                    
+             
+                        <a href="/order"style="padding-left: 10px; color: 8A3A7A">
+                            <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; <span class="circleNum">{{sifSay}}</span>
+                        </a>
+             
+                    
+                    
+                </div>
+                
+            </div>
+            <div class="container hidden-xs" style="padding: 0;height: 81px;">
+
+                <div style="padding: 0;width: 50%;">
+                    <div class="col-md-4">
+                        <a href="/"><img src="/img/logo.png" alt=""></a>
+
+                    </div>
+
+                    <div class="col-md-8">
+                        <form style="width:100%; margin:0; padding:0;" action="/axtar" method="get">
+                                <input type="text" class="search_in" name="search" placeholder="{{lang.search}}" /><button type="submit" class="search_but"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="text-right"  style="display:block; padding:0;width: 50%;">
+                    <span style="border-right:1px dashed #C251AB;padding:0 5px;line-height:45px;display:inline-block; padding:0 15px;">
+                        {% if user %}
+                            <a href="/panel" class="butt lighter">Panel</a>
+                            <a href="/cix" class="butt">{{lang.signOut}}</a>
+                        {% else %}
+                            <a href="/qeydiyyat" class="butt lighter">{{lang.register}}</a>
+                            <a href="/daxilol" class="butt">{{lang.enter}}</a>
+                        {%endif%}
+                    </span>
+                    <span style="padding-left: 10px; color: 8A3A7A">
+                        <a href="/order"><i class="fa fa-shopping-cart fa-lg"></i>&nbsp; <span class="circleNum">{{sifSay}}</span></a>
+                    </span>
+                </div>
+
+                
+            </div>
+        </div>
+        <div class="catBack hidden-xs">
+            <div class="container text-center">
+                {%for category in categories %}
+                    <div class="subcat-container">
+                        <a href="/category/{{category.id}}">{{category.name}}</a>
+                        {% if category.subs %}
+                            <div class="subcats">
+                                {% for sub in category.subs %}
+                                    <a href='/category/{{sub.id}}'>{{sub.name}}</a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                {%endfor%}
+                
+            </div>
+        </div>
+        

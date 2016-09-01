@@ -1,0 +1,54 @@
+{% extends 'panel/template.html' %}
+
+{% block panel %}
+
+<div class="shadow-white">
+    {% if message %}
+        <div class="alert alert-success">
+            {{message}}
+        </div>
+    {% endif %}
+    <form method="post" action enctype="multipart/form-data">
+
+        <table class="table table-hover">
+            <tr>
+                <td>
+                    Saytın adı:
+                </td>
+                <td>
+                    <input type="text" class="text_in" name="sitename" value="{{data.sitename}}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Saytın sloganı:
+                </td>
+                <td>
+                    <input type="text" class="text_in" value="{{data.sloqan}}" name="sloqan">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Saytın slogan tamamlayici:
+                </td>
+                <td>
+                    <input type="text" class="text_in" value="{{data.sloqan2}}" name="sloqan2">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Parallax:
+                </td>
+                <td>
+                    <input type="file" name="image">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" class="btn" value="Yadda saxla">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{%endblock%}

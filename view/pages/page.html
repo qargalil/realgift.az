@@ -1,0 +1,18 @@
+{% extends 'template.html' %}
+
+{% block main %}
+    <div class="container" style="margin-top: 10px;">
+        <div class="col-md-10 col-md-push-1 shadow-white" style="padding:5px 20px;">
+            <h2 style="margin:30px 0 !important; font-weight: 600">{{page.name}}</h2>
+            <div style="padding-bottom: 30px; font-size: 16px">
+                {{page.text|raw}}
+            </div>
+            {% if user.privilege==3%}
+                <div style="padding: 10px;">
+                    <a href="/panel/pages?page=update&&id={{page.id}}" class="butt">Dəyiş</a>
+                </div>
+            {%endif%}
+        </div>
+
+    </div>
+{% endblock %}

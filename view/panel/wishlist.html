@@ -1,0 +1,44 @@
+{% extends 'panel/template.html' %}
+
+
+{% block panel %}
+
+    <div style="margin: 0 10px;">
+        {% if message %}
+        <div class="alert alert-warning">
+            {{message}}
+        </div>
+        {% endif %}
+        {% for product in products%}
+        <div class="col-md-4 col-sm-6" style="margin-bottom:10px;">
+            <div style="border:1px solid #EBEBEB;">
+                <div class="text-center" style="position: relative">
+                    <div class="dimmer">
+                        <div style="display: flex; align-items: center;height: 100%;width: 100%; margin: 0 auto;">
+                            <div class="text-center" style="width: 100%;">
+                                <a onclick="sil({{product.id}})" class="butt lighter">Sil</a>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="/img/{{product.image}}" style="width: 100%">
+                </div>
+
+                <div style="background:#fff; padding:10px;border-top:1px solid #EBEBEB">
+                    <a href="\mehsul\{{product.product_id}}">{{product.name}}</a>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+            <h4>{{lang.noItemInWishlist}}</h4>
+        {% endfor %}
+    </div>
+    <script>
+        function sil(id){
+            if(confirm('{{lang.areYouSure}}')){
+                location.href='?delete='+id;
+            }
+        }
+    </script>
+
+{% endblock %}

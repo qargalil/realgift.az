@@ -1,0 +1,168 @@
+{% extends 'panel/template.html' %}
+
+{% block panel %}
+    <div style="margin:0 10px" class="shadow-white">
+        {% if message %}
+            <div class="alert alert-{{message.class}}">
+                {{message.text}}
+            </div>
+        {% endif %}
+        <h2>Profil</h2>
+        <table class="table table-hover">
+            <tr>
+                <td style="font-weight: 600">
+                    {{lang.name}}
+                </td>
+                <td style="color: #777">
+                    {{user.name}}
+                </td>
+                <td>
+                    <a style="cursor: pointer" onclick="show('name')">{{lang.edit}}</a>
+                </td>
+            </tr>
+            <tr class="hiddenForm" id="name">
+                <form action="/panel/profil?upd=name" method="post">
+                    <td colspan="2">
+                        <input type="text" name="name" class="text_in">
+                    </td>
+                    <td class="text-center">
+                        <input type="submit" value="{{lang.changeName}}" class="butt">
+                    </td>
+                </form>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600">
+                    {{lang.surname}}
+                </td>
+                <td style="color: #777">
+                    {{user.surname}}
+                </td>
+                <td>
+                    <a style="cursor: pointer" onclick="show('surname')">{{lang.edit}}</a>
+                </td>
+            </tr>
+            <tr class="hiddenForm" id="surname">
+                <form action="/panel/profil?upd=surname" method="post">
+                    <td colspan="2">
+                        <input type="text" name="surname" class="text_in">
+                    </td>
+                    <td class="text-center">
+                        <input type="submit" value="{{lang.changeName}}" class="butt">
+                    </td>
+                </form>
+            </tr>
+
+            <tr>
+                <td style="font-weight: 600">
+                    {{lang.email}}
+                </td>
+                <td style="color: #777">
+                    {{user.email}}
+                </td>
+                <td>
+                    <a style="cursor: pointer" onclick="show('email')">{{lang.edit}}</a>
+                </td>
+            </tr>
+            <tr class="hiddenForm" id="email">
+                <form action="/panel/profil?upd=email" method="post">
+                    <td colspan="2">
+                        <input type="text" name="email" class="text_in">
+                    </td>
+                    <td class="text-center">
+                        <input type="submit" value="{{lang.changeEmail}}" class="butt">
+                    </td>
+                </form>
+            </tr>
+            <tr>
+                <td style="font-weight: 600">
+                    {{lang.password}}
+                </td>
+                <td style="color: #777">
+                    *********
+                </td>
+                <td>
+                    <a style="cursor: pointer"  onclick="show('password')">{{lang.edit}}</a>
+                </td>
+            </tr>
+            <tr class="hiddenForm" id="password">
+                <form action="/panel/profil?upd=password" method="post">
+                    <td colspan="3" align="center">
+                        <table class="pastab" >
+                            <tr>
+                                <td>
+                                    <input type="password" name="passwordCurrent" class="text_in" placeholder="{{lang.currentPassword}}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="password" name="password" class="text_in" placeholder="{{lang.password}}">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="password" name="password1" placeholder="{{lang.passwordAgain}}" class="text_in">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" value="{{lang.changePassword}}" class="butt">
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+
+                </form>
+            </tr>
+            <tr>
+                <td style="font-weight: 600">
+                    {{lang.mobile}}
+                </td>
+                <td style="color: #777">
+                    {{user.mobile}}
+                </td>
+                <td>
+                    <a style="cursor: pointer" onclick="show('mobile')">{{lang.edit}}</a>
+                </td>
+            </tr>
+            <tr class="hiddenForm" id="mobile">
+                <form action="/panel/profil?upd=mobile" method="post">
+                    <td colspan="2">
+                        <input type="text" name="mobile" class="text_in">
+                    </td>
+                    <td class="text-center">
+                        <input type="submit" value="{{lang.changeMobile}}" class="butt">
+                    </td>
+                </form>
+            </tr>
+            <tr>
+                <td style="font-weight: 600">
+                    {{lang.address}}
+                </td>
+                <td style="color: #777">
+                    {{user.address}}
+                </td>
+                <td>
+                    <a style="cursor: pointer" onclick="show('address')">{{lang.edit}}</a>
+                </td>
+            </tr>
+            <tr class="hiddenForm" id="address">
+                <form action="/panel/profil?upd=address" method="post">
+                    <td colspan="2">
+                        <input type="text" name="address" class="text_in">
+                    </td>
+                    <td class="text-center">
+                        <input type="submit" value="{{lang.changeAddress}}" class="butt">
+                    </td>
+                </form>
+            </tr>
+        </table>
+        <script>
+            function show(id){
+                $('.hiddenForm').css({'display':'none'})
+                $('#'+id).css({'display':'table-row'});
+            }
+        </script>
+    </div>
+{% endblock %}

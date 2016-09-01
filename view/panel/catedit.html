@@ -1,0 +1,71 @@
+{% extends 'panel/template.html' %}
+
+{% block panel %}
+    <div style="padding: 0 5px;" class="shadow-white">
+
+        <div style="font-size: 29px;font-weight: 600; padding: 20px;">Kategoriyani yenile</div>
+        <form action="/category/update" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="{{data.id}}">
+            <table class="table" style="width: 70%">
+                <tr>
+                    <td>
+                        Kateqoriya Adı
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="azeri">Azeri</label><br>
+                        <input name="name_az" class="text_in" id="azeri" value="{{data.name_az}}">
+                    </td>
+                </tr><tr>
+                <td>
+                    <label for="rus">Rus</label><br>
+                    <input name="name_ru" class="text_in" id="rus" value="{{data.name_ru}}">
+                </td>
+            </tr><tr>
+                <td>
+                    <label for="english">English</label><br>
+                    <input name="name_en" class="text_in" id="english" value="{{data.name_en}}">
+                </td>
+            </tr>
+                {%if data.category_id%}
+                <tr>
+                    <td>
+                        <label for="category_id">Aiddir</label><br>
+                        <select name="category_id" id="category_id">
+                            {% for category in categories %}
+                            <option value="{{category.id}}"{% if data.category_id==category.id %} selected {%endif%}>{{category.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td>
+                        Prioritet <br>
+                        <input type="text" name="main" class="text_in" value="{{data.main}}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Şəkil <br>
+                        <input type="file" name="image" value="fayli sec">
+                    </td>
+                </tr>
+                    {% if data.img%}
+                        <tr>
+                            <td>
+                                <img src="/img/category/{{data.img}}" alt="">
+                            </td>
+                        </tr>    
+                    {% endif %}
+                <tr>
+                    <td>
+                        <input type="submit" class="butt" value="Yenilə">
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
+{% endblock %}

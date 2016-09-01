@@ -1,0 +1,58 @@
+{% extends 'panel/template.html' %}
+
+{% block panel %}
+    <div style="margin: 0 10px;" class="shadow-white" ng-controller="UsersController">
+        <div style="height: 40px;line-height: 30px;">
+            <div class="col-md-2">
+                Search :
+            </div>
+            <div class="col-md-10">
+                <input type="text" ng-model="myfilter" class="text_in" />
+            </div>
+
+        </div>
+        <div style="height: 40px;line-height: 30px;">
+            <div class="col-md-2">
+                User Limit :
+            </div>
+
+            <div class="col-md-10" ng-init="limitN=10">
+                <select ng-model="limitN">
+                    <option value="10" selected>10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="{[{users.length}]}">All</option>
+
+                </select>
+            </div>
+
+        </div>
+
+
+
+        <table class="table table-bordered">
+            <tr><th>№</th>
+                <th>
+                    Users
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+            <tr ng-repeat="user in users | filter : myfilter | limitTo:limitN">
+                <td>{[{$index}]}</td>
+                <td style="padding: 10px "><a href="/user/{[{user.id}]}">{[{user.email}]}</a></td>
+                <td>
+                    {[{getType(user.privilege-1)}]}
+                </td>
+                <td style="padding: 10px "><a ng-click="sil(user)" class="butt">Sil</a> <a class="butt lighter" ng-click="makeIt(user)">Make {[{getType(user.privilege)}]}</a></td>
+            </tr>
+
+        </table>
+    </div>
+
+
+{% endblock %}

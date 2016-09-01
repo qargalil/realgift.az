@@ -1,0 +1,32 @@
+{% extends 'panel/pages.html' %}
+
+{% block page %}
+<table class="table">
+    <tr>
+        <th>
+            Səhifələr
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+    {% for page in data %}
+    <tr>
+        <td>
+            {{page.name_az}}
+        </td>
+        <td>
+            <a href="/panel/pages?page=update&&id={{page.id}}" class="butt lighter">Dəyiş</a>
+            <a href='#' onclick="silbunu('/panel/pages?page=delete&&id={{page.id}}')" class="butt">Sil</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<script>
+    function silbunu(id) {
+        if(confirm('Dəqiq?')){
+            location.href=id;
+        }
+    }
+</script>
+{% endblock %}

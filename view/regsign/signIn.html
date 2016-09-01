@@ -1,0 +1,39 @@
+{% extends 'template.html'%}
+
+{% block main%}
+
+<div class="container" style="margin-top: 10px;">
+
+  <div class="col-md-4 col-md-push-1 shadow-white">
+      <form action="/daxilol" method="post">
+          <table class="mytable">
+            <tr>
+              <td>
+                <input type="text" class="text_in" name="email" placeholder="{{lang.email}}">
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type="password" class="text_in" name="password" placeholder="{{lang.password}}">
+              </td>
+            </tr>
+            {% if error %}
+            <tr>
+              <td>
+                {{error}}
+              </td>
+            </tr>
+            {% endif %}
+            <tr>
+              <td>
+                <input type="submit" class="butt" value="Daxil ol">
+              </td>
+            </tr>
+          </table>
+      </form>
+
+  </div>
+
+</div>
+
+{%endblock%}

@@ -1,0 +1,222 @@
+{% extends 'panel/template.html'%}
+
+{% block panel %}
+
+<div class="shadow-white row" style="margin:0 10px;" ng-controller="NewProductController">
+    <div class="col-md-7">
+        <h4>
+            Məlumatları hansı dildə dolduracaqsınız?
+        </h4>
+        <div class="langs">
+            <a onclick="show('az')"><img class="flag flag-az"> Azeri</a>
+            <a onclick="show('ru')"><img class="flag flag-ru"> Rus</a>
+            <a onclick="show('en')"><img class="flag flag-gb"> English</a>
+            <a onclick="show('all')">Bütün dillərdə</a>
+        </div>
+        <form class="nopm" ng-submit="submit(product)">
+
+            <table class="mytable" style="margin-top:10px;">
+                <tr>
+                    <td>
+                        Mehsulun adi
+                    </td>
+                </tr>
+                <tr class="dil azeri">
+                    <td>
+                        <input type="text" ng-model="product.name_az"  placeholder="Azeri" class="text_in">
+                    </td>
+                </tr>
+                <tr class="dil rus">
+                    <td>
+                        <input type="text" ng-model="product.name_ru"  placeholder="Rus" class="text_in">
+                    </td>
+                </tr>
+                <tr class="dil english">
+                    <td>
+                        <input type="text" ng-model="product.name_en"  placeholder="English" class="text_in">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col-md-6 nopm">
+                            Qiymeti : <input type="number" required ng-model="product.price" class="text_in">
+                        </div>
+                        <div class="col-md-6 nopm" style="padding-left: 5px; ">
+
+                            Say : <input type="number" required ng-model="product.amount" class="text_in">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Kateqoriyalar
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="line-height: 34px;">
+                        <span ng-class="{selectedbox:sub.selected}" ng-repeat="sub in subs" class="chbox" ng-click="sub.selected = !sub.selected"><input  type="checkbox"  ng-model="sub.selected" style="display: none;" value="{[{sub.id}]}"/> {[{sub.name}]}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Rəng (Hər rəng vergül ilə ayrılır).
+                    </td>
+                </tr>
+
+
+                <tr class="dil azeri">
+                    <td>
+                        <input type="text" ng-model="product.color_az" placeholder="Azəri" class="text_in">
+                    </td>
+                </tr>
+                <tr class="dil rus">
+                    <td>
+                        <input type="text" ng-model="product.color_ru"  placeholder="Rus" class="text_in">
+                    </td>
+                </tr>
+                <tr class="dil english">
+                    <td>
+                        <input type="text" ng-model="product.color_en"  placeholder="English" class="text_in">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Material (Hər material vergül ilə ayrılır).
+                    </td>
+                </tr>
+
+
+                <tr class="dil azeri">
+                    <td>
+                        <input type="text" ng-model="product.material_az" placeholder="Azəri" class="text_in">
+                    </td>
+                </tr>
+                <tr class="dil rus">
+                    <td>
+                        <input type="text" ng-model="product.material_ru"  placeholder="Rus" class="text_in">
+                    </td>
+                </tr>
+                <tr class="dil english">
+                    <td>
+                        <input type="text" ng-model="product.material_en"  placeholder="English" class="text_in">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Teqlər (Hər teq vergül ilə ayrılır). <i data-title="Kömək" data-content="Teg sizin məhsulun axtarış bölməsindən rahat  tapılması üçün lazımdır. Məhsulun oxşar adlarını və ya məhsulla əlaqədar olan sözləri yaza bilərsiniz. Məsələn:  qolbaq, daş-qaş, bilərzik, firuzə, kəhrəba" class="fa fa-question my-popup" style="border: 2px solid #333; border-radius: 100%; padding: 0 4px; cursor: pointer;"></i>
+                        <script>
+                            $('.my-popup')
+                                    .popup({
+                                        inline   : true,
+                                        hoverable: true,
+                                        position : 'bottom left'
+                                    })
+                            ;
+                        </script>
+                    </td>
+                </tr>
+
+
+                <tr class="dil azeri">
+                    <td>
+                        <input type="text" ng-model="product.tags_az" placeholder="Azəri" class="text_in">
+                    </td>
+                </tr>
+                <tr class="dil rus">
+                    <td>
+                        <input type="text" ng-model="product.tags_ru"  placeholder="Rus" class="text_in">
+                    </td>
+                </tr>
+                <tr class="dil english">
+                    <td>
+                        <input type="text" ng-model="product.tags_en"  placeholder="English" class="text_in">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Melumat
+                    </td>
+                </tr>
+                <tr class="dil azeri">
+                    <td>
+                        <textarea  class="text_in" placeholder="Azeri" ng-model="product.text_az"  style="resize: none; height: 150px;"></textarea>
+                    </td>
+                </tr>
+                <tr class="dil rus">
+                    <td>
+                        <textarea  class="text_in" placeholder="Rus" ng-model="product.text_ru"  style="resize: none; height: 150px;"></textarea>
+                    </td>
+                </tr>
+                <tr class="dil english">
+                    <td>
+                        <textarea  class="text_in" placeholder="English" ng-model="product.text_en"  style="resize: none; height: 150px;"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <li ng-repeat="error in errors">{[{error}]}</li>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" class="butt" value="Gonder">
+                    </td>
+                </tr>
+
+
+
+
+            </table>
+
+        </form>
+    </div>
+
+    <div class="col-md-5" style="padding: 10px;">
+        Sekiller
+        <label for="file" class="butt"><i class="file icon"></i>Şəkli sech</label>
+        <input type="file" nv-file-select uploader="images" multiple id="file" style="display:none"/>
+        <table class="ui table">
+            <tr ng-repeat="item in images.queue">
+
+                <td>
+                    <div>{[{item.file.name}]}
+
+                    </div>
+                    <div>
+                        <button ng-click="item.remove()" class="butt lighter">
+                            <i class="fa fa-remove"></i>
+                            Şəkil sil
+                        </button>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+</div>
+<script>
+    function show(lang){
+        $('.dil').css({'display':'none'});
+        switch (lang){
+            case 'az':
+                $('.azeri').css({'display':'table-row'});
+                break;
+            case 'en':
+                $('.english').css({'display':'table-row'});
+                break;
+            case 'ru':
+                $('.rus').css({'display':'table-row'});
+                break;
+            default:
+                $('.dil').css({'display':'table-row'});
+        }
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'panel/pages.html' %}
+
+{% block page %}
+<form action="/panel/pages?page=new" method="post">
+    <table class="table" style="width: 100%">
+        <tr>
+            <td>
+                <h3>
+                    Yeni Səhifə
+                </h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Səhifənin adı
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="text_in" type="text" placeholder="Azeri" value="{{data.name_az}}" name="name_az">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="text_in" type="text" placeholder="Rus" value="{{data.name_ru}}" name="name_ru">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input class="text_in" type="text" placeholder="English" value="{{data.name_en}}" name="name_en">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="purpose"> Məqsəd : </label>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <select name="purpose" id="purpose" class="text_in" style="height: 40px;">
+                    <option value="1">Xüsusi</option>
+                    <option value="2">Alış Veriş</option>
+                    <option value="3">Heyət</option>
+                    <option value="4">Haqqımızda</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Kontent
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Azeri
+                <textarea name="text_az" placeholder="Azeri" class="text_in" style="height: 200px; resize: vertical;">{{data.text_az}}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Rus
+                <textarea name="text_ru" placeholder="Rus" class="text_in" style="height: 200px; resize: vertical;">{{data.text_ru}}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Inglis
+                <textarea name="text_en" placeholder="English" class="text_in" style="height: 200px; resize: vertical;">{{data.text_en}}</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Yaz" class="butt">
+            </td>
+        </tr>
+    </table>
+
+</form>
+<script src="/text/nicEdit.js">
+
+</script>
+
+<script>
+    bkLib.onDomLoaded(nicEditors.allTextAreas);
+</script>
+</script>
+{% endblock %}

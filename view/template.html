@@ -1,0 +1,42 @@
+<html ng-app="myApp">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="/css/materialize.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/flags.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/sidebar.min.css">
+        <link rel="stylesheet" href="/js/popup/popup.min.css">
+        <link rel="stylesheet" href="/js/popup/transition.min.css">
+        <link rel="icon" href="/favicon.png">
+        <title>{{settings.sitename}}</title>
+        
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/materialize.min.js"></script>
+        <script src="/js/sidebar.min.js"></script>
+        <script src="/js/angular.min.js"></script>
+        <script src="/js/afu.js"></script>
+        <script src="/js/app.php"></script>
+        <script src="/js/popup/popup.min.js"></script>
+        <script src="/js/popup/transition.min.js"></script>
+        <script src="/ckeditor/ckeditor.js"></script>
+
+
+    </head>
+    
+    <body>
+        <div style="position: relative; padding-bottom: 350px; min-height: 100%;">
+            {% include 'template/header.html' %}
+
+            {%block main%}{%endblock%}
+
+            {%include 'template/footer.html'%}
+        </div>
+
+
+    </body>
+</html>
+
+        
+        

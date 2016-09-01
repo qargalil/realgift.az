@@ -1,0 +1,74 @@
+{% extends 'template.html'%} 
+
+{% block main%}
+<div class="parallax-container text-center">
+    <div class="parallax"><img src="/img/back.png"></div>
+    <div class="parallax-style">
+        <div style="width: 100%;;;">
+            <p style="margin-top:30px;">{{settings.sloqan}}</p>
+            <p>{{settings.sloqan2}}</p>
+        </div>
+
+    </div>
+
+</div>
+        
+        <div class="container" style="color:#555;">
+            <h3 class="text-center" style="margin:40px;">{{lang.specialCategories}}</h3>
+            <div class="row" style="margin:0;">
+
+
+                {% for cat in mainCats %}
+                    <div class="col-md-4 col-sm-6 nopm">
+                        <div class="catitem">
+                            <a href="/category/{{cat.id}}">
+                                <div class="pr">
+                                    <img src="{{cat.image}}" style="box-shadow:0 0 10px #aaa">
+                                    <div class="catCap">{{cat.name}}</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+                
+            </div>
+                
+             <h3 class="text-center" style="margin: 40px;"><span style="padding: 20px 40px;; border-radius: 20px;background: #fff; box-shadow: 0 0 20px #ddd;">{{lang.popularNow}}</span></h3>
+             
+             
+             <div>
+                 <!-- hello here !-->
+                 <div class="row">
+                     {% for product in products %}
+                     <div class="col-md-4 col-sm-6" style="margin-bottom:30px;">
+                         <div style="border:1px solid #EBEBEB; border-top-left-radius: 3px; border-top-right-radius: 3px; font-size:16px; font-weight: 600;">
+                             <div>
+                                 <a href="/mehsul/{{product.id}}">
+                                    <img src="/img/{{product.image}}" style="width: 100%;">
+                                 </a>
+                            </div>
+                            
+                            <div style="background:#fff; padding:10px;text-overflow: ellipsis; overflow: hidden;white-space: nowrap; border-top: 1px solid #ddd;">
+                                <a href="/mehsul/{{product.id}}" style="color: #8A3A7A; font-size:19px;">{{product.name}}</a>&nbsp;
+                                <div class="text-right">
+                                    {{lang.price}} :{{product.price}} AZN
+                                </div>
+                            </div>
+
+                         </div>                          
+                     </div>
+                     {% else %}
+
+                        {{lang.noProduct}}
+                     {% endfor %}
+                     
+                 </div>
+             </div>
+        </div>
+        
+        <div>
+            
+        </div>
+ {% endblock %}

@@ -1,0 +1,32 @@
+{%extends 'panel/template.html'%}
+
+{% block panel %}
+    <div class="shadow-white" style="margin: 0 10px;" ng-controller="CommentController">
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    Yazan
+                </td>
+                <td>
+                    Şərh
+                </td>
+                <td>
+                    Actions
+                </td>
+            </tr>
+            <tr ng-repeat="comment in comments">
+                <td>
+                    {[{comment.user_name}]}
+                </td>
+                <td>
+                    {[{comment.comment}]}
+                </td>
+                <td>
+                    <a class="butt" ng-click="sil(comment)">Sil</a>
+                    <a class="butt lighter" ng-click="approve(comment)">Təsdiqlə</a>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+{% endblock %}

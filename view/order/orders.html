@@ -1,0 +1,119 @@
+{% extends 'template.html'%}
+
+{% block main %}
+    <div class="container" style="padding: 10px 0;">
+        <div class="col-md-8" style="padding:0 5px; margin-bottom: 10px;">
+            {% if problems %}
+                {% if problems.success %}
+                    <div class="alert alert-success">
+                        {{problems.success}}
+                    </div>
+                {% else %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for problem in problems %}
+                                <li>
+                                    {{problem}}
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                {% endif %}
+
+            {% endif %}
+            {% for order in orders %}
+                <div class="row shadow-white" style="margin: 0 10px; position: relative;">
+                    <div class="col-xs-3">
+                        <a href="/mehsul/{{order.product_id}}">
+                            <img src="/img/{{order.image}}" style="width: 100%">
+                        </a>
+                    </div>
+                    <div class="col-md-9 row nopm">
+                        <div class="col-sm-7">
+                            <a href="/mehsul/{{order.product_id}}" style="font-size: 17px; display: block; padding-bottom: 10px;">{{order.name}}</a>
+                            {{lang.price}}: {{order.price}} man
+                        </div>
+
+                        <div class="col-sm-5 nopm">
+                            <div style="padding-bottom: 5px;">
+                                <form action="/order?act=upd" method="post">
+                                    <input type="hidden" name="id" value="{{order.id}}">
+                                    <input type="hidden" name="product_id" value="{{order.product_id}}">
+                                    {{lang.amount}} :<input type="number" name="amount" value="{{order.amount}}" style="width: 60px; border-radius: 5px; border:1px solid #ddd;" max="{{order.max}}" min="1" />&nbsp;
+                                    <input type="submit" value="{{lang.update}}" id="update">
+
+                                </form>
+                                <div>
+                                    {{lang.max}} : {{order.max}}
+                                </div>
+                            </div>
+                            <div style="padding-bottom: 5px;">
+                                {{lang.shipping}}: 4 AZN
+                            </div>
+                            <div style="padding-bottom: 10px;">
+                                {{lang.totalPrice}} {{order.price * order.amount+4}} man
+                            </div>
+                            <div class="text-right">
+                                <a class="butt" onclick="sil({{order.id}})">{{lang.deleteOrder}}</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            {%else%}
+                <h3>{{lang.noOrder}}</h3>
+            {% endfor %}
+
+            <script>
+                function sil(id) {
+                    if(confirm('{{lang.areYouSure}}')){
+
+                        $url = "/order?act=del&&id="+id;
+                        location.href  = $url;
+                    }
+
+                }
+            </script>
+
+        </div>
+        <div class="col-md-4">
+            <div class="shadow-white text-center">
+                <h2>{{lang.sumPrice}}</h2>
+                <hr>
+                <h4>{{lang.numberOfOrders}}: {{say}}</h4>
+                <h3 style="padding-bottom: 10px">{{lang.totalPrice}} {{total}} man</h3>
+                <h4>{{lang.paymentMethod}}</h4>
+                <form action="/panel/order/finish" method="post">
+                    <table class="table">
+                        <!--
+                        <tr>
+                            <td class="text-center">
+
+                                <input name="method" value="paypal" id="paypal" type="radio"> <label for="paypal">Paypal</label>
+                            </td>
+                        </tr>
+                        !-->
+                        <tr>
+                            <td class="text-center">
+                                <input name="method" value="diger" id="h2h" type="radio" checked hidden> <label for="h2h">{{lang.payH2H}}</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"> <button type="submit" class="butt" style="font-size: 17px;"><i class="fa fa-shopping-cart" aria-hidden="true"></i> {{lang.order}}</button></td>
+                        </tr>
+                    </table>
+
+                </form>
+
+
+                <div style="padding: 10px;">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
